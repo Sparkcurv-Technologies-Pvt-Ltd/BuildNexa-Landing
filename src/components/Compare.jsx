@@ -33,11 +33,11 @@ export default function Compare() {
             <form className="calc" data-calc data-reveal style={{ "--d": ".1s" }} onSubmit={(e) => e.preventDefault()}>
               <h3>What could leakage be costing you?</h3>
               <label className="calc__field"><span>Annual project value <output data-out="value">₹100 Cr</output></span>
-                <input type="range" name="value" min="10" max="1000" step="10" value="100"/></label>
+                <input type="range" name="value" min="10" max="1000" step="10" defaultValue="100"/></label>
               <label className="calc__field"><span>Cost leakage (rework, idle stock, missed billing) <output data-out="leak">3%</output></span>
-                <input type="range" name="leak" min="1" max="8" step="0.5" value="3"/></label>
+                <input type="range" name="leak" min="1" max="8" step="0.5" defaultValue="3"/></label>
               <label className="calc__field"><span>Share you could recover with live controls <output data-out="rec">40%</output></span>
-                <input type="range" name="rec" min="10" max="80" step="5" value="40"/></label>
+                <input type="range" name="rec" min="10" max="80" step="5" defaultValue="40"/></label>
               <div className="calc__result">
                 <div><span>Estimated leakage / year</span><b data-res="leak">₹3 Cr</b></div>
                 <div className="calc__win"><span>Potential recovery / year</span><b data-res="rec">₹1.2 Cr</b></div>

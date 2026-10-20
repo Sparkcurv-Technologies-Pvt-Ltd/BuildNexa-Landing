@@ -61,7 +61,7 @@ function block1() {
     }
     if (!node) return;
     const final = node.textContent;
-    const total = 22;
+    const total = 12;
     let frame = 0;
     const tick = () => {
       frame++;
@@ -77,7 +77,7 @@ function block1() {
     const labels = $$(".eyebrow, .section-index, .sol-step__k, .bento__k");
     labels.forEach((el) => { if (!el.hasAttribute("aria-label")) el.setAttribute("aria-label", el.textContent.trim()); });
     // Wait for the loader to clear so the hero label is visible when it scrambles
-    const start = () => onceInView(labels, decrypt, { threshold: 0.6 });
+    const start = () => onceInView(labels, decrypt, { threshold: 0.2 });
     document.body.classList.contains("is-loading") ? setTimeout(start, 1700) : start();
   }
 
@@ -96,6 +96,8 @@ function block1() {
     marquee.classList.add("is-velocity");
     let x = 0, dir = 1, vel = 0, lastY = window.scrollY, lastT = performance.now(), running = false, visible = false, hover = false;
     const BASE = 50; // px per second
+    let w = list.offsetWidth;
+    new ResizeObserver(() => (w = list.offsetWidth)).observe(list); // also catches late web-font loads
     const loop = (now) => {
       if (!visible) { running = false; return; }
       const dt = Math.min((now - lastT) / 1000, 0.05);
@@ -107,7 +109,6 @@ function block1() {
       if (Math.abs(dy) > 0.5) dir = dy > 0 ? 1 : -1;
       const boost = 1 + Math.min(Math.abs(vel) / 220, 6);
       x -= BASE * boost * dir * dt * (hover ? 0.15 : 1);
-      const w = list.offsetWidth;
       if (x <= -w) x += w;
       if (x > 0) x -= w;
       track.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
@@ -122,6 +123,10 @@ function block1() {
       }).observe(marquee);
     }
   }
+
+  // Process chain: run its looping link signal only while it is on screen
+  const chain = $(".chain");
+  if (chain && hasIO) new IntersectionObserver(([e]) => chain.classList.toggle("is-live", e.isIntersecting)).observe(chain);
 
   /* ----------------------------------------------------------------------
      [shadcn] Accordion — <details name="faq"> with height animation

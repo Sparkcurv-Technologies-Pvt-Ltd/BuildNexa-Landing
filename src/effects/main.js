@@ -82,7 +82,6 @@ function block1() {
       const eased = 1 - Math.pow(1 - p, 3);
       const n = Math.round(eased * 100);
       countEl.textContent = String(n).padStart(2, "0");
-      loader.style.setProperty("--p", n + "%");
       if (p < 1) requestAnimationFrame(tick);
       else setTimeout(finishLoading, 150);
     };
@@ -121,7 +120,7 @@ function block1() {
         entry.target.classList.add("is-in");
         io.unobserve(entry.target);
       });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    }, { rootMargin: "0px 0px 10% 0px", threshold: 0 });
     targets.forEach((el) => io.observe(el));
 
     const cio = new IntersectionObserver((entries) => {
@@ -139,6 +138,7 @@ function block1() {
      ---------------------------------------------------------------------- */
   const header = $("[data-header]");
   const progressBar = $(".scroll-progress");
+  const ambient = $(".ambient");
   let lastY = window.scrollY;
 
   function updateHeader(y) {
@@ -168,18 +168,6 @@ function block1() {
   const parallaxEls = $$("[data-parallax]").map((el) => ({ el, speed: parseFloat(el.dataset.parallax) || 0, ref: el.parentElement }));
   const parallaxInner = $$("[data-parallax-inner]").map((el) => ({ el, ref: el.parentElement }));
 
-  // Horizontal pinned process
-  const hs = $("[data-hscroll]");
-  const hsTrack = $("[data-hscroll-track]");
-  const hsBar = $("[data-hscroll-bar]");
-  let hsDistance = 0;
-  function measureHScroll() {
-    if (!hs || !hsTrack) return;
-    if (!desktopMQ.matches) { hs.style.removeProperty("--hs-height"); hsTrack.style.transform = ""; hsDistance = 0; return; }
-    hsDistance = Math.max(0, hsTrack.scrollWidth - vw);
-    hs.style.setProperty("--hs-height", vh + hsDistance + "px");
-  }
-
   let ticking = false;
   function onScrollFrame() {
     ticking = false;
@@ -187,7 +175,7 @@ function block1() {
     const docH = document.documentElement.scrollHeight - vh;
     const sp = docH > 0 ? (y / docH).toFixed(4) : 0;
     progressBar.style.setProperty("--sp", sp);
-    document.documentElement.style.setProperty("--scroll", sp); // drives the ambient light field
+    if (ambient) ambient.style.setProperty("--scroll", sp); // drives the ambient light field; set here, not on <html>, so only that layer restyles
     updateHeader(y);
 
     if (!reduceMotion) {
@@ -211,13 +199,6 @@ function block1() {
       const n = words.length;
       words.forEach((w, i) => w.style.setProperty("--o", clamp(p * n * 1.15 - i, 0, 1).toFixed(2)));
     });
-
-    if (hs && hsDistance > 0) {
-      const r = hs.getBoundingClientRect();
-      const p = clamp(-r.top / hsDistance, 0, 1);
-      hsTrack.style.transform = `translate3d(${(-p * hsDistance).toFixed(1)}px, 0, 0)`;
-      if (hsBar) hsBar.parentElement.style.setProperty("--hp", p.toFixed(4));
-    }
   }
   const requestFrame = () => { if (!ticking) { ticking = true; requestAnimationFrame(onScrollFrame); } };
   window.addEventListener("scroll", requestFrame, { passive: true });
@@ -225,7 +206,6 @@ function block1() {
   function onResize() {
     vw = window.innerWidth;
     vh = window.innerHeight;
-    measureHScroll();
     requestFrame();
   }
   let resizeT;
@@ -294,26 +274,6 @@ function block1() {
         el.style.transition += ", transform .6s cubic-bezier(.22,1,.36,1)";
         el.style.transform = "";
         setTimeout(() => (el.style.transition = ""), 600);
-      });
-    });
-
-    // "View" cursor on project cards
-    const dot = $(".cursor-dot");
-    let cx = -200, cy = -200, tx = -200, ty = -200, cursorRunning = false;
-    const cursorLoop = () => {
-      cx = lerp(cx, tx, 0.2);
-      cy = lerp(cy, ty, 0.2);
-      dot.style.setProperty("--cx", cx.toFixed(1) + "px");
-      dot.style.setProperty("--cy", cy.toFixed(1) + "px");
-      if (Math.abs(cx - tx) > 0.2 || Math.abs(cy - ty) > 0.2) requestAnimationFrame(cursorLoop);
-      else cursorRunning = false;
-    };
-    $$("[data-cursor]").forEach((el) => {
-      el.addEventListener("pointerenter", (e) => { cx = tx = e.clientX; cy = ty = e.clientY; dot.classList.add("is-on"); });
-      el.addEventListener("pointerleave", () => dot.classList.remove("is-on"));
-      el.addEventListener("pointermove", (e) => {
-        tx = e.clientX; ty = e.clientY;
-        if (!cursorRunning) { cursorRunning = true; requestAnimationFrame(cursorLoop); }
       });
     });
 
@@ -530,7 +490,6 @@ function block1() {
     if (typeof modal.showModal === "function") modal.showModal();
     else modal.setAttribute("open", "");
     document.body.style.overflow = "hidden";
-    $(".cursor-dot").classList.remove("is-on");
   }
   function closeProject() {
     if (modal.open) modal.close();

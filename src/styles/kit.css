@@ -4,10 +4,6 @@
    No dependencies; each block is self-contained and can be removed alone.
    ========================================================================== */
 
-/* ---------- [React Bits] BlurText — split words resolve from blur ---------- */
-.split-word > span { filter: blur(10px); opacity: 0; transition: transform 1.1s var(--ease), filter .9s var(--ease), opacity .9s var(--ease); transition-delay: calc(var(--i) * 45ms + var(--d, 0s)); }
-[data-split].is-in .split-word > span { filter: blur(0); opacity: 1; }
-
 /* ---------- [React Bits] ShinyText ---------- */
 .shiny {
   background: linear-gradient(110deg, var(--muted) 35%, #FEFEFE 50%, var(--muted) 65%) 0 0 / 250% 100%;
@@ -157,7 +153,6 @@ kbd { font-family: var(--mono); font-size: .7rem; padding: 3px 7px; border-radiu
   .toaster { right: 16px; bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .split-word > span { filter: none; opacity: 1; }
   .spotlight { opacity: 1; transform: translate(-30%, -40%) rotate(32deg); }
   .lamp__cone, .lamp__line { transform: none; opacity: 1; }
 }

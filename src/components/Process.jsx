@@ -1,26 +1,57 @@
+const STAGES = [
+  { n: "01", title: "Organisation setup", body: "Companies, chart of accounts, tax codes, numbering and approval workflows.", doc: "PO/FY2627/####", tag: "Masters" },
+  { n: "02", title: "Client & project", body: "Client with GSTIN and retention defaults, then the project and its contract value.", doc: "SPV-001 · 120 MWp", tag: "Clients · Projects" },
+  { n: "03", title: "WBS & weightages", body: "Engineering, Procurement and Construction items whose weightages drive % complete.", doc: "412 items · 100%", tag: "WBS" },
+  { n: "04", title: "Procure & build", body: "POs, GRNs, work orders and JMRs post straight into the DPR.", doc: "GRN/FY2627/0087", tag: "Procurement · DPR" },
+  { n: "05", title: "Bill & collect", body: "RA bills on cumulative % complete, client payments and the client ledger.", doc: "RA-07 · 64% billed", tag: "RA bills · Payments" },
+  { n: "06", title: "Close & audit", body: "Period close, financial statements and a Tally export for your auditor.", doc: "Mar-27 · locked", tag: "Reports · Tally" },
+];
+
 export default function Process() {
   return (
     <>
-      {/* ============ PROCESS (horizontal pinned) ============ */}
-      <section className="process" id="process" aria-labelledby="process-title" data-hscroll>
-        <div className="process__sticky">
-          <div className="container process__head">
-            <div>
-              <span className="section-index">06</span>
-              <p className="eyebrow" data-reveal>How a project travels</p>
-              <h2 id="process-title" className="section-title" data-split>From setup to audit, <em>one connected journey.</em></h2>
-            </div>
-            <div className="process__progress" aria-hidden="true"><span data-hscroll-bar></span></div>
+      {/* ============ PROCESS (connected document chain) ============ */}
+      <section className="section" id="process" aria-labelledby="process-title">
+        <div className="container">
+          <div className="section-head">
+            <span className="section-index">06</span>
+            <p className="eyebrow" data-reveal>How a project travels</p>
+            <h2 id="process-title" className="section-title" data-split>From setup to audit, <em>one connected journey.</em></h2>
+            <p className="section-lead" data-reveal style={{ "--d": ".08s" }}>
+              Every stage hands its documents to the next — nothing is re-typed, and every number traces back to the document that caused it.
+            </p>
           </div>
-          <div className="process__viewport">
-            <ol className="process__track" data-hscroll-track>
-              <li className="pstep"><span className="pstep__n">01</span><h3>Organisation setup</h3><p>Companies, chart of accounts, tax codes, numbering series and approval workflows — the foundation every module reads.</p><span className="pstep__d">Masters</span></li>
-              <li className="pstep"><span className="pstep__n">02</span><h3>Client &amp; project</h3><p>Create the client with GSTIN and retention/TDS defaults, then the project with contract value, capacity and dates.</p><span className="pstep__d">Clients · All projects</span></li>
-              <li className="pstep"><span className="pstep__n">03</span><h3>WBS &amp; weightages</h3><p>Import from a template or Excel. Every item is Engineering, Procurement or Construction, with a weightage that drives % complete.</p><span className="pstep__d">WBS</span></li>
-              <li className="pstep"><span className="pstep__n">04</span><h3>Procure &amp; build</h3><p>POs, GRNs, work orders and JMRs update the DPR as they post; site logs daily progress, delays and equipment.</p><span className="pstep__d">Procurement · DPR</span></li>
-              <li className="pstep"><span className="pstep__n">05</span><h3>Bill &amp; collect</h3><p>Raise RA bills on cumulative % complete, record client payments and track the client ledger.</p><span className="pstep__d">RA bills · Payments</span></li>
-              <li className="pstep"><span className="pstep__n">06</span><h3>Close &amp; audit</h3><p>Close periods, run financial statements and cost to completion, and hand the ledger to your auditor via Tally export.</p><span className="pstep__d">Reports · Tally</span></li>
+
+          <div className="chain" data-reveal>
+            <ol className="chain__list">
+              {STAGES.map((s, i) => (
+                <li className="chain__node" key={s.n} style={{ "--i": i }}>
+                  <span className="chain__dot" aria-hidden="true">{s.n}</span>
+                  {i < STAGES.length - 1 && <span className="chain__link" aria-hidden="true"><i></i></span>}
+                  <div className="chain__card">
+                    <span className="chain__doc">{s.doc}</span>
+                    <h3>{s.title}</h3>
+                    <p>{s.body}</p>
+                    <span className="chain__tag">{s.tag}</span>
+                  </div>
+                </li>
+              ))}
             </ol>
+
+            <dl className="chain__foot">
+              <div className="chain__stat">
+                <dt>Materials DPR</dt>
+                <dd><b><span data-count="62">0</span>%</b><span className="meter" aria-hidden="true"><span style={{ "--w": "62%" }}></span></span></dd>
+              </div>
+              <div className="chain__stat">
+                <dt>Journal balance</dt>
+                <dd><b>Dr = Cr</b><span className="pill pill--live">balanced</span></dd>
+              </div>
+              <div className="chain__stat">
+                <dt>Nightly integrity checks</dt>
+                <dd><b><span data-count="9">0</span>/9</b><span className="pill pill--live">passed</span></dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>

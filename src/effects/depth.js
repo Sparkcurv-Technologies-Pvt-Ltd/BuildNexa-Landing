@@ -66,7 +66,7 @@ function block1() {
   const numerals = [];
   $$("main section").forEach((sec) => {
     const idx = $(".section-index", sec);
-    if (!idx || sec.hasAttribute("data-hscroll")) return;
+    if (!idx) return;
     const n = document.createElement("span");
     n.className = "depth-num";
     n.setAttribute("aria-hidden", "true");
@@ -96,13 +96,16 @@ function block1() {
   assignColumns();
   window.addEventListener("load", assignColumns);
 
-  const slabs = $$(".why .bento, .faq .acc-list, .form, .quick__grid");
+  const slabs = $$(".why .bento, .faq .acc-list, .form"); // not .quick__grid: it overlaps the hero video, so it stays still while the hero scrolls
   const solutions = $("#solutions");
   const consoleEl = $(".console");
 
-  /* ---------- Pointer for skyline ---------- */
+  /* ---------- Pointer sway (JS hero fallback only) ---------- */
   let mx = 0, smx = 0;
-  hero?.addEventListener("pointermove", (e) => { mx = e.clientX / window.innerWidth - 0.5; request(); });
+  // Where supported, the hero fly-through runs as a CSS scroll-driven animation (depth.css),
+  // which the compositor keeps in lockstep with the scroll; JS only drives it as a fallback.
+  const cssHero = window.CSS?.supports?.("animation-timeline: scroll()");
+  if (!cssHero) hero?.addEventListener("pointermove", (e) => { mx = e.clientX / window.innerWidth - 0.5; request(); });
 
   /* ---------- Frame ---------- */
   let ticking = false;
@@ -110,11 +113,10 @@ function block1() {
     ticking = false;
     const y = window.scrollY;
     const isDesk = desktop.matches;
-    smx += (mx - smx) * 0.12;
-    if (Math.abs(mx - smx) > 0.001) request(); // keep easing toward the pointer
-
     // Hero fly-through: far layers lag, near layers rush past
-    if (hero) {
+    if (hero && !cssHero) {
+      smx += (mx - smx) * 0.12;
+      if (Math.abs(mx - smx) > 0.001) request(); // keep easing toward the pointer
       const hh = hero.offsetHeight;
       if (y < hh * 1.2) {
         const p = clamp(y / hh, 0, 1);
@@ -137,7 +139,7 @@ function block1() {
 
     // Card drift (desktop only — stacked mobile layouts stay put)
     drifters.forEach(({ el, ref, speed }) => {
-      if (!isDesk || ref.closest("[data-hscroll]")) { el.style.translate = ""; return; }
+      if (!isDesk) { el.style.translate = ""; return; }
       const r = ref.getBoundingClientRect();
       if (r.bottom < -200 || r.top > vh + 200) return;
       el.style.translate = `0 ${clamp((r.top + r.height / 2 - vh / 2) * speed, -60, 60).toFixed(1)}px`;

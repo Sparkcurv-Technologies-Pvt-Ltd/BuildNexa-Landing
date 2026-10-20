@@ -5,5 +5,6 @@ import "./styles/glass.css";
 import "./styles/kit.css";
 import "./styles/depth.css";
 import "./styles/theme.css";
+import "./styles/device-preview.css";
 
 createRoot(document.getElementById("root")).render(<App />);

@@ -6,7 +6,7 @@ export default function About() {
         <div className="container">
           <div className="about__grid">
             <figure className="about__media" data-reveal>
-              <img src="/assets/img/about-frame.webp" width="1200" height="1000" loading="lazy" decoding="async"
+              <img src="/assets/img/about-frame.webp" width="1200" height="1000" decoding="async" fetchPriority="low"
                    alt="Steel frame of a multi-storey building rising beside two tower cranes"/>
             </figure>
             <div className="about__copy">

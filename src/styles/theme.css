@@ -92,7 +92,7 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 
 /* Reusable glass recipe (with an opaque fallback below) */
 .glass,
-.header, .hero__panel, .quick__grid, .service-card, .contact__info, .form, .modal, .cmdk, .toast {
+.header, .service-card, .contact__info, .form, .modal, .cmdk, .toast {
   -webkit-backdrop-filter: blur(var(--blur));
   backdrop-filter: blur(var(--blur));
 }
@@ -101,7 +101,7 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 .chips li, .tag, .btn, .btn--ghost, .btn--primary, .btn--light, .socials a, .service-card__icon,
 .kpi, .flow__node, .chart, .cmp__row, .local__tools li, .local__chips li, .menu-toggle, .modal__close,
 .cmdk-trigger, .chips-field span, .acc, .pv__ui--dash, .pv__ui--flow i, .pv__ui--phone, .bento__item,
-.pstep, .project, .float-card, .marquee, .newsletter {
+.project, .float-card, .marquee, .newsletter {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -274,7 +274,7 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
   background: var(--glass-card-bg); border: 1px solid var(--glass-line); border-radius: var(--radius);
   box-shadow: var(--shadow); overflow: hidden;
 }
-.service-card[data-reveal].is-in { transform: none; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .35s, opacity 1.1s var(--ease) var(--d, 0s); }
+.service-card[data-reveal].is-in { transform: none; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .35s, opacity var(--reveal) var(--ease) var(--d, 0s); }
 .service-card[data-reveal].is-in:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); border-color: rgba(154,1,41, 0.6); }
 .service-card::after { display: none; }
 .service-card__media { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; background: var(--c-card); }
@@ -312,10 +312,6 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 .bento__item--dark p { color: rgba(254,254,254, 0.9) !important; }
 .bento__item--dark .bento__k { color: var(--c-white); }
 .bento__k { color: var(--c-red); }
-
-/* ---------- Process ---------- */
-.pstep { background: var(--glass-card-bg); border-color: var(--glass-line-soft); border-radius: var(--radius); }
-.pstep__d { color: var(--c-red); }
 
 /* ---------- Projects gallery ---------- */
 .work-grid { grid-template-columns: repeat(2, 1fr); column-gap: 24px; }
@@ -420,7 +416,7 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 
 /* ---------- Fallback: no backdrop-filter → near-opaque surfaces ---------- */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .header, .hero__panel, .quick__grid, .service-card, .form, .modal, .cmdk, .toast,
+  .header, .service-card, .form, .modal, .cmdk, .toast,
   .console, .roles__panel, .calc, .acc, .project, .why, .footer { background: rgba(47,53,64, 0.96); }
   .contact__info, .quick__item--accent { background: var(--c-red-deep); }
 }
@@ -437,7 +433,6 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 /* Small red text on lighter glass fell to ~4:1 — use off-white with a red marker instead */
 .roles__pain { color: var(--c-offwhite); border-left: 3px solid var(--c-red); padding-left: 14px; }
 .kpi--blue b { color: var(--c-offwhite); }
-.pstep__d { color: var(--c-offwhite); }
 
 /* Text on the red contact panel: solid white */
 .contact__info .section-index, .contact__info .section-index::before, .contact__info .eyebrow,
@@ -601,20 +596,20 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 body { font-optical-sizing: auto; }
 
 .hero__title, .section-title, .about__statement, .cta__title, .local__title,
-.footer__word, .stat dd, .pstep__n, .modal__body h3, .mobile-menu__list a {
+.footer__word, .stat dd, .modal__body h3, .mobile-menu__list a {
   font-weight: 700; letter-spacing: -0.025em;
 }
 .hero__title { line-height: 1; }
 .section-title { line-height: 1.02; }
 
-.service-card h3, .sol-step h3, .roles__copy h3, .bento__item h3, .pstep h3,
+.service-card h3, .sol-step h3, .roles__copy h3, .bento__item h3,
 .project h3, .about__col h3, .quick__item b, .acc summary, .calc h3,
 .kpi b, .calc__result b, .float-card__big, .toast__title, .contact__steps b {
   font-weight: 500; letter-spacing: -0.01em;
 }
 .btn, .nav__link, .brand__name, .badge, .roles__tab, .seg__btn, .chips-field span,
 .service-card__link, .eyebrow, .section-index, .sol-step__k, .bento__k, .project__cat,
-.pstep__d, .tag, .chips li, .cmdk__group, .footer__col h3, .contact__details dt {
+.tag, .chips li, .cmdk__group, .footer__col h3, .contact__details dt {
   font-weight: 500;
 }
 .brand__name b { font-weight: 700; }
@@ -629,7 +624,7 @@ body { font-optical-sizing: auto; }
 :root { --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 body { font-family: var(--font-body); }
 h1, h2, h3, .btn, .nav__link, .brand__name, .badge, .roles__tab, .seg__btn, .quick__item b,
-.acc summary, .kpi b, .calc__result b, .float-card__big, .stat dd, .pstep__n, .footer__word,
+.acc summary, .kpi b, .calc__result b, .float-card__big, .stat dd, .footer__word,
 .mobile-menu__list a, .service-card__link, .toast__title, .contact__steps b, .marquee__list li,
 .chips-field span, .modal__stats dd, .cmdk__item, .cta__mail { font-family: var(--font); }
 
@@ -658,3 +653,90 @@ h1, h2, h3, .btn, .nav__link, .brand__name, .badge, .roles__tab, .seg__btn, .qui
 /* Hide the page's native scrollbar (scrolling still works; the top progress line shows position) */
 html { scrollbar-width: none; }
 html::-webkit-scrollbar { display: none; }
+
+/* ==========================================================================
+   Process — connected document chain
+   Stages light up in sequence when the chain enters view (one-shot reveal, not
+   scroll-linked), then a signal runs link to link while the chain is on screen.
+   ========================================================================== */
+.chain {
+  --gap: 18px; --step: 140ms;
+  --sig-from: -100% 0; --sig-to: 100% 0; --sig-dir: 90deg; /* phone layout flips these to vertical */
+  padding: clamp(22px, 3vw, 40px); border-radius: var(--radius-lg);
+  background: var(--glass-card-bg); border: 1px solid var(--glass-line-soft); box-shadow: var(--shadow);
+}
+.chain__list { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--gap); margin: 0; padding: 0; list-style: none; }
+.chain__node { position: relative; display: flex; flex-direction: column; gap: 18px; }
+
+.chain__dot {
+  position: relative; z-index: 1; align-self: center; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  font-family: var(--mono); font-size: .78rem; font-weight: 600; color: rgba(254,254,254, 0.55);
+  border: 1px solid var(--glass-line); background: var(--c-navy);
+  scale: .7; transition: scale .5s var(--ease), background-color .5s var(--ease), color .5s, border-color .5s, box-shadow .5s;
+  transition-delay: calc(var(--i) * var(--step) + .2s);
+}
+.chain.is-in .chain__dot {
+  scale: 1; color: var(--c-white); border-color: transparent; background: var(--c-red);
+  box-shadow: 0 0 0 6px rgba(154,1,41, 0.18), 0 8px 24px -6px rgba(154,1,41, 0.8);
+}
+
+/* Connector to the next stage: the track draws in, then a signal travels along it */
+.chain__link {
+  position: absolute; top: 21px; left: calc(50% + 30px); width: calc(100% + var(--gap) - 60px); height: 2px; overflow: hidden;
+  background: rgba(254,254,254, 0.14); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .45s var(--ease) calc(var(--i) * var(--step) + .3s);
+}
+.chain__link i {
+  position: absolute; inset: 0; translate: var(--sig-from);
+  background: linear-gradient(var(--sig-dir), transparent 40%, var(--c-red) 85%, var(--c-white));
+}
+.chain.is-in .chain__link { transform: none; }
+.chain.is-in .chain__link i { animation: chainSignal 3s linear calc(1.4s + var(--i) * .5s) infinite paused; }
+.chain.is-in.is-live .chain__link i { animation-play-state: running; } /* kit.js toggles is-live while on screen */
+@keyframes chainSignal { from { translate: var(--sig-from); } 16%, to { translate: var(--sig-to); } }
+
+.chain__card {
+  display: flex; flex-direction: column; gap: 8px; flex: 1;
+  padding: 18px 16px; border-radius: var(--radius); border: 1px solid var(--glass-line-soft);
+  background: rgba(254,254,254, 0.04);
+  opacity: 0; translate: 0 14px;
+  transition: opacity .5s var(--ease), translate .5s var(--ease), border-color .3s, background-color .3s;
+  transition-delay: calc(var(--i) * var(--step) + .25s), calc(var(--i) * var(--step) + .25s), 0s, 0s;
+}
+.chain.is-in .chain__card { opacity: 1; translate: 0 0; }
+.chain__card:hover { border-color: rgba(154,1,41, 0.6); background: rgba(154,1,41, 0.08); }
+.chain__doc {
+  align-self: flex-start; font-family: var(--mono); font-size: .7rem; letter-spacing: .02em; white-space: nowrap;
+  color: rgba(254,254,254, 0.72); padding: 3px 8px; border-radius: 6px;
+  background: rgba(254,254,254, 0.06); border-left: 2px solid var(--c-red);
+}
+.chain__card h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em; color: var(--c-white); margin: 4px 0 0; }
+.chain__card p { font-size: .86rem; line-height: 1.5; color: rgba(254,254,254, 0.72); margin: 0; }
+.chain__tag { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--glass-line-soft); font-family: var(--mono); font-size: .68rem; color: var(--c-offwhite); }
+
+/* Live ledger strip (reuses .meter and .pill) */
+.chain__foot {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  margin: clamp(24px, 3vw, 36px) 0 0; padding-top: clamp(20px, 2.4vw, 28px); border-top: 1px solid var(--glass-line-soft);
+}
+.chain__stat dt { font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: rgba(254,254,254, 0.6); }
+.chain__stat dd { display: flex; align-items: center; gap: 14px; margin: 8px 0 0; }
+.chain__stat b { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700; letter-spacing: -0.03em; color: var(--c-white); white-space: nowrap; }
+.chain__stat .meter { flex: 1; max-width: 180px; }
+.chain.is-in .meter span { animation: grow-x 1.6s var(--ease) 1s both; }
+
+/* Tablet: two rows of three — the row-end link would point off the row */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .chain__list { grid-template-columns: repeat(3, 1fr); row-gap: 28px; }
+  .chain__node:nth-child(3n) .chain__link { display: none; }
+}
+/* Phone: vertical chain, links run down the left */
+@media (max-width: 700px) {
+  .chain { --sig-from: 0 -100%; --sig-to: 0 100%; --sig-dir: 180deg; }
+  .chain__list { grid-template-columns: 1fr; }
+  .chain__node { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .chain__dot { flex: none; align-self: flex-start; }
+  .chain__link { top: 52px; left: 21px; width: 2px; height: calc(100% + var(--gap) - 60px); transform: scaleY(0); transform-origin: top; }
+  .chain__foot { grid-template-columns: 1fr; }
+}

@@ -1,3 +1,5 @@
+import DevicePreview from "./DevicePreview.jsx";
+
 export default function Cta() {
   return (
     <>
@@ -9,8 +11,11 @@ export default function Cta() {
           <div className="cta__marquee-track"><span>Let's build — Let's build — Let's build — Let's build — </span><span>Let's build — Let's build — Let's build — Let's build — </span></div>
         </div>
         <div className="container cta__content">
-          <p className="eyebrow" data-reveal>Your next chapter</p>
-          <h2 id="cta-title" className="cta__title" data-split>Have something ambitious in mind? <em>Let's engineer it together.</em></h2>
+          {/* Kept for accessibility (section is aria-labelledby this id) — the device preview below stands in for it visually. */}
+          <h2 id="cta-title" className="sr-only">Have something ambitious in mind? Let's engineer it together.</h2>
+
+          <DevicePreview />
+
           <div className="cta__actions" data-reveal style={{ "--d": ".3s" }}>
             <a href="#contact" className="btn btn--primary btn--xl" data-magnetic><span>Start the conversation</span><svg className="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a href="mailto:hello@buildnexa.io" className="cta__mail">hello@buildnexa.io</a>

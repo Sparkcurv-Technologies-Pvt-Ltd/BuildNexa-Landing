@@ -9,7 +9,6 @@ export default function Chrome() {
         <img className="loader__mark" src="/assets/buildnexa-icon-96.png" width="56" height="56" alt=""/>
         <div className="loader__count"><span data-loader-count>00</span>%</div>
       </div>
-      <div className="loader__bar"><span></span></div>
       </div>
       
       <div className="ambient" aria-hidden="true">
@@ -22,7 +21,6 @@ export default function Chrome() {
       </div>
       
       <div className="scroll-progress" aria-hidden="true"><span></span></div>
-      <div className="cursor-dot" aria-hidden="true"><span>View</span></div>
       
       {/* SVG sprite */}
       <svg width="0" height="0" className="sr-only" aria-hidden="true">

@@ -15,7 +15,7 @@ export default function Projects() {
           </div>
       
           <div className="work-grid">
-            <button className="project" type="button" data-project="0" data-cursor data-reveal style={{ "--d": "0s" }} aria-haspopup="dialog">
+            <button className="project" type="button" data-project="0" data-reveal style={{ "--d": "0s" }} aria-haspopup="dialog">
               <div className="project__media"><div className="pv__inner" data-parallax-inner>
                 <img src="/assets/img/work-solar.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Rows of solar panels installed on a large rooftop"/>
               </div></div>
@@ -26,7 +26,7 @@ export default function Projects() {
               </div>
             </button>
       
-            <button className="project" type="button" data-project="1" data-cursor data-reveal style={{ "--d": "0.08s" }} aria-haspopup="dialog">
+            <button className="project" type="button" data-project="1" data-reveal style={{ "--d": "0.08s" }} aria-haspopup="dialog">
               <div className="project__media"><div className="pv__inner" data-parallax-inner>
                 <img src="/assets/img/work-highrise.webp" width="1200" height="750" loading="lazy" decoding="async" alt="High-rise building under construction beside a tower crane"/>
               </div></div>
@@ -37,7 +37,7 @@ export default function Projects() {
               </div>
             </button>
       
-            <button className="project" type="button" data-project="2" data-cursor data-reveal style={{ "--d": "0s" }} aria-haspopup="dialog">
+            <button className="project" type="button" data-project="2" data-reveal style={{ "--d": "0s" }} aria-haspopup="dialog">
               <div className="project__media"><div className="pv__inner" data-parallax-inner>
                 <img src="/assets/img/work-framing.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Worker in a hard hat on the timber frame of a building"/>
               </div></div>
@@ -48,7 +48,7 @@ export default function Projects() {
               </div>
             </button>
       
-            <button className="project" type="button" data-project="3" data-cursor data-reveal style={{ "--d": "0.08s" }} aria-haspopup="dialog">
+            <button className="project" type="button" data-project="3" data-reveal style={{ "--d": "0.08s" }} aria-haspopup="dialog">
               <div className="project__media"><div className="pv__inner" data-parallax-inner>
                 <img src="/assets/img/work-steel.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Steel reinforcement bars stacked on warehouse shelving"/>
               </div></div>

@@ -25,13 +25,13 @@ export default function Contact() {
             <figure className="contact__map" data-reveal>
               <iframe
                 title="Map showing the BuildNexa office (Sparkcurv Technologies Pvt Ltd)"
-                src="https://www.google.com/maps?q=8.1832953,77.4261254&z=15&output=embed"
+                src="https://www.google.com/maps?q=Sparkcurv+Technologies+Pvt+Ltd,+64/3+Thompson+St,+Palace+Rd,+Nagercoil,+Tamil+Nadu+629001&z=17&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <figcaption>
-                <span>Our office</span>
-                <a href="https://maps.app.goo.gl/gSEC34xQbvDZrxde6" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+                <span>64/3, Thompson St, Palace Rd, Nagercoil, Tamil Nadu 629001, India</span>
+                <a href="https://www.google.com/maps/place/Sparkcurv+Technologies+Pvt+Ltd/@8.1832978,77.4248905,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f13ac530d79f:0x4f6d6170ffd64116!8m2!3d8.1832953!4d77.4261254!16s%2Fg%2F11z16vjx1f" target="_blank" rel="noopener">Open in Google Maps ↗</a>
               </figcaption>
             </figure>
           </div>

@@ -15,7 +15,7 @@ src/effects/          interaction layer that works on the rendered DOM:
                       kit.js    toasts, command menu (Ctrl/⌘ K), accordion, tabs, compare toggle, calculator
                       depth.js  hero parallax, section numerals, scale-in panels, console tilt-up
                       smooth.js eased nav-link jumps and sliding nav pill (wheel/touch scrolling stays native)
-src/styles/           styles.css (base), glass.css, kit.css, depth.css, theme.css (design system, loaded last)
+src/styles/           styles.css (base), glass.css, kit.css, depth.css, theme.css (design system), device-ad.css (CTA laptop and phone preview, loaded last)
 public/assets/        brand icons, photos (img/), hero clips (video/)
 public/robots.txt, public/sitemap.xml
 ```
@@ -85,6 +85,11 @@ Six clips play in order (`public/assets/video/`, 540p–720p, about 24 MB total)
 | hero-4-site.mp4 | Sururi Ballıdağ | pexels.com/video/18563093 |
 | hero-5-sitelead.mp4 | Mikael Blomkvist | pexels.com/video/8964729 |
 | hero-6-solar.mp4 | Braeson Holland | pexels.com/video/8851160 |
+
+## CTA device preview
+`src/components/DevicePreview.jsx` (used by `Cta.jsx`) + `src/styles/device-preview.css`. A flat browser window (chrome bar + address pill) around a real BuildNexa screenshot, with a plain phone frame overlapping its bottom-right corner — no 3D laptop or hand illustration. Sizes are real `px`/`rem`, not container-width units, so text stays legible at every width; only the phone is scaled as a whole (`transform: scale()`), so its own markup stays crisp.
+
+The window image is `public/assets/img/buildnexa-previewsite.png` (desktop) and `buildnexa-previewsite-mobile.png` (swapped in below 640px via `<picture>`, since shrinking the desktop screenshot that far makes its text unreadable) — both are real screenshots of the app's Companies screen with the company names, GSTINs and org name edited to placeholder data; see the comments in `DevicePreview.jsx`. Replacing either screenshot: redact the same fields before saving over the file, and keep each `<img>`'s `width`/`height` attributes and the matching `aspect-ratio` in `device-preview.css` in sync with the new file's actual pixel size.
 
 ## Photography
 All photos are from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, attribution appreciated but not required. They're served locally as WebP.
