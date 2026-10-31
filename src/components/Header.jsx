@@ -6,7 +6,7 @@ export default function Header() {
       <div className="header__inner">
         <a href="#top" className="brand" aria-label="BuildNexa — home">
           <img className="brand__logo" src="/assets/buildnexa-icon-96.png" width="36" height="36" alt=""/>
-          <span className="brand__name">Build<b>Nexa</b></span>
+          <span className="brand__name">Build<b>Nexa</b><span className="brand__tm">™</span></span>
         </a>
         <nav className="nav" aria-label="Primary">
           <ul className="nav__list">

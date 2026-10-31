@@ -153,6 +153,7 @@ body { background: var(--c-navy); color: var(--c-offwhite); }
 .header__inner { height: 100%; max-width: none; padding-inline: clamp(14px, 2vw, 24px); display: flex; align-items: center; gap: 16px; }
 .brand__logo { width: 36px; height: 36px; border-radius: 10px; background: var(--c-white); padding: 3px; object-fit: contain; flex: none; box-shadow: 0 2px 10px var(--shadow-color); }
 .brand__name { color: var(--c-white); }
+.brand__tm { margin-left: 1px; font-size: .5em; font-weight: 600; vertical-align: top; letter-spacing: 0; }
 .nav__link { color: rgba(254,254,254, 0.78); padding: 8px 13px; font-size: .9rem; }
 .nav__link:hover, .nav__link.is-active { color: var(--c-white); }
 .nav__pill { background: var(--grad-red); box-shadow: 0 6px 18px rgba(154,1,41, 0.4); }

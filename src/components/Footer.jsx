@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="footer__brand">
             <a href="#top" className="brand" aria-label="BuildNexa — back to top">
               <img className="brand__logo" src="/assets/buildnexa-icon-96.png" width="36" height="36" alt=""/>
-              <span className="brand__name">Build<b>Nexa</b></span>
+              <span className="brand__name">Build<b>Nexa</b><span className="brand__tm">™</span></span>
             </a>
             <p>Construction ERP for projects, procurement, finance and more.</p>
             <a href="mailto:hello@buildnexa.io" className="footer__mail">hello@buildnexa.io</a>
