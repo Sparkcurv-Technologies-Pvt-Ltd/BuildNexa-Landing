@@ -4,18 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BuildNexa — Construction ERP for Projects, Procurement &amp; Finance</title>
-  <meta name="description" content="BuildNexa is a construction and solar EPC ERP: WBS and daily progress reporting, procure-to-pay, inventory, RA billing, finance and Tally-compatible export — every document tied to one ledger." />
+  <meta name="description" content="Construction and solar EPC ERP: WBS and daily progress reports, procure-to-pay, inventory, RA billing and the general ledger, with Tally-compatible export." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="theme-color" content="#2F3540" />
   <link rel="canonical" href="https://buildnexa.io/" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BuildNexa" />
+  <meta property="og:locale" content="en_IN" />
   <meta property="og:title" content="BuildNexa — Construction ERP for Projects, Procurement &amp; Finance" />
   <meta property="og:description" content="One system of record for construction and solar EPC delivery — progress, procurement, stores, billing and the ledger, all connected." />
   <meta property="og:url" content="https://buildnexa.io/" />
   <meta property="og:image" content="https://buildnexa.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="BuildNexa logo with the line: Construction ERP for projects, procurement and finance" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BuildNexa — Construction ERP for Projects, Procurement &amp; Finance" />
+  <meta name="twitter:description" content="One system of record for construction and solar EPC delivery — progress, procurement, stores, billing and the ledger, all connected." />
+  <meta name="twitter:image" content="https://buildnexa.io/assets/og-image.png" />
 
   <link rel="icon" href="/assets/buildnexa-icon-96.png" type="image/png" />
   <link rel="apple-touch-icon" href="/assets/buildnexa-icon-192.png" />
@@ -24,32 +32,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="/assets/img/hero-video-poster.webp" />
 
+  <!-- Entity facts for search and answer engines; keep them identical to what the page and other profiles say.
+       The FAQPage schema is rendered by src/components/Faq.jsx from the same list as the visible FAQ. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BuildNexa",
-    "url": "https://buildnexa.io/",
-    "logo": "https://buildnexa.io/assets/buildnexa-logo.png",
-    "description": "Construction and solar EPC ERP for projects, procurement, inventory, client billing and finance.",
-    "email": "hello@buildnexa.io"
-  }
-  </script>
-  <script>document.documentElement.classList.add("js")</script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Can we bring our existing Excel DPR trackers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Workbook Import previews your .xlsx row by row — WBS items, scope quantities and dates — before it creates anything. Templates are available from the Setup Library." } },
-      { "@type": "Question", "name": "Does BuildNexa work with Tally?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ledger & Tally Export exports the period’s vouchers as Tally-compatible XML for your statutory auditor." } },
-      { "@type": "Question", "name": "How are client RA bills calculated?", "acceptedAnswer": { "@type": "Answer", "text": "At project level: contract value × cumulative % complete, less what has already been billed. Retention and TDS defaults come from the client master, so nobody re-types them." } },
-      { "@type": "Question", "name": "What if a document was posted by mistake?", "acceptedAnswer": { "@type": "Answer", "text": "Cancel it. The cancel guard first checks that nothing downstream still depends on it, then posts a reversal entry (never an edit), reverses any stock movement and recomputes the linked DPR quantities." } },
-      { "@type": "Question", "name": "Who can see what?", "acceptedAnswer": { "@type": "Answer", "text": "Each user has one organisation role — Org admin, Portfolio lead, Accounts, Procurement, Stores, HR or Member — plus project roles such as Project manager, Engineering, Procurement, Site or Viewer." } },
-      { "@type": "Question", "name": "Is it only for solar projects?", "acceptedAnswer": { "@type": "Answer", "text": "No. BuildNexa started with solar EPC delivery, and the same WBS, procurement, inventory and finance modules run building, infrastructure and other construction projects." } }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://buildnexa.io/#organization",
+        "name": "BuildNexa",
+        "url": "https://buildnexa.io/",
+        "logo": { "@type": "ImageObject", "url": "https://buildnexa.io/assets/buildnexa-logo.png", "width": 1000, "height": 660 },
+        "description": "Construction and solar EPC ERP for projects, procurement, inventory, client billing and finance.",
+        "email": "hello@buildnexa.io",
+        "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "hello@buildnexa.io", "areaServed": "IN", "availableLanguage": "en" },
+        "parentOrganization": { "@type": "Organization", "name": "Sparkcurv Technologies Pvt Ltd" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://buildnexa.io/#website",
+        "url": "https://buildnexa.io/",
+        "name": "BuildNexa",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://buildnexa.io/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://buildnexa.io/#software",
+        "name": "BuildNexa",
+        "url": "https://buildnexa.io/",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Construction ERP",
+        "operatingSystem": "Web browser",
+        "description": "BuildNexa is a construction ERP for contractors and solar EPC companies. It runs each project's WBS and daily progress report (DPR), procurement from indent to payment, stores and inventory, subcontract work orders, client RA billing and the general ledger in one web app.",
+        "featureList": [
+          "WBS and daily progress reports (DPR) for engineering, materials and construction",
+          "Excel DPR workbook import",
+          "Purchase indents, requisitions, RFQs, purchase orders and GRNs",
+          "Three-way match purchase bills, vendor payments and advances",
+          "Subcontract service requisitions, work orders and service bills",
+          "Stores and inventory with site warehouses, issues, returns and transfers",
+          "Client RA bills with retention and TDS",
+          "General ledger, period close and Tally-compatible XML export",
+          "GST tax codes and a TDS register for sections 194C, 194I, 194J and 194Q",
+          "Assets, plant, production and legal registers",
+          "Organisation and project roles with a permission matrix"
+        ],
+        "publisher": { "@id": "https://buildnexa.io/#organization" }
+      }
     ]
   }
   </script>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="is-loading">
   <div id="root"></div>

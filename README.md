@@ -3,8 +3,9 @@
 Single-page marketing site for the BuildNexa construction ERP, built with Vite + React (JavaScript). There's no backend and no database, and it doesn't link to the ERP app (app.buildnexa.io).
 
 ```
-index.html            <head> (SEO meta, JSON-LD for Organization + FAQPage, fonts) + #root
-src/main.jsx          entry: imports the stylesheets and renders <App />
+index.html            <head> (SEO meta, JSON-LD for Organization, WebSite and SoftwareApplication, fonts) + #root
+src/main.jsx          entry: imports the stylesheets, hydrates the prerendered page (renders it in yarn dev)
+src/entry-server.jsx  renders <App /> to HTML for scripts/prerender.js
 src/App.jsx           page layout; starts the interaction layer once after first render
 src/components/       one component per section: Header, Hero, About, Modules, Solutions,
                       Roles, Compliance, Why, Process, Compare, Projects, Faq, Cta, Contact,
@@ -17,14 +18,15 @@ src/effects/          interaction layer that works on the rendered DOM:
                       smooth.js eased nav-link jumps and sliding nav pill (wheel/touch scrolling stays native)
 src/styles/           styles.css (base), glass.css, kit.css, depth.css, theme.css (design system), device-ad.css (CTA laptop and phone preview, loaded last)
 public/assets/        brand icons, photos (img/), hero clips (video/)
-public/robots.txt, public/sitemap.xml
+public/robots.txt, public/sitemap.xml (update <lastmod> when the page content changes)
+scripts/prerender.js  after the build, writes the rendered page into dist/index.html
 ```
 
 ## Develop
 ```
 yarn install
 yarn dev           # http://localhost:5173
-yarn build         # static output in dist/
+yarn build         # static output in dist/, with the page prerendered into index.html
 yarn preview       # serves dist/ at http://localhost:4173
 ```
 
@@ -58,8 +60,14 @@ Radius is 18px for cards and pill-shaped for buttons. Blur is 16px, applied only
 - **Contact:** `hello@buildnexa.io` is the only contact detail shown, and the form's mail fallback goes there. Add a phone number, address or social profiles only if they're real.
 - **Projects section:** describes who BuildNexa is for. It contains no client names or results. Add real, client-approved case studies to `src/components/Projects.jsx` and the `projects` array in `src/effects/main.js` when you have them.
 - **Commitments:** check the wording in "Why choose us" and the FAQ answers.
-- **Social image:** `/assets/og-image.png` (1200×630) is referenced in the meta tags but doesn't exist yet.
+- **Social image:** `/assets/og-image.png` (1200×630) is the logo with the tagline. Check it with a link preview before launch.
 - **Legal pages:** there are no Privacy or Terms pages, so the footer doesn't link to any. Add them before collecting leads at scale.
+
+## Search and AI answers
+- **Prerendering:** `yarn build` writes the full page into `dist/index.html`. AI crawlers such as GPTBot, ClaudeBot and PerplexityBot don't run JavaScript, so without this they see an empty page. Check with `curl -s https://buildnexa.io/ | grep "What is BuildNexa"`.
+- **FAQ:** the questions live in one list in `src/components/Faq.jsx`, which renders both the accordion and the FAQPage JSON-LD. Lead each answer with the direct answer, and use only product facts.
+- **Entity facts:** the JSON-LD in `index.html` names the company, product, contact and maker. Keep them identical on LinkedIn, directories and review sites.
+- **Hosting:** if the site goes behind Cloudflare, check that its AI-bot blocking is off, or the crawlers above get a 403 even though robots.txt allows them.
 
 ## Contact form
 - **Sending:** the form POSTs JSON to `/api/contact` (`data-endpoint` in `src/components/Contact.jsx`). The API in `server/contact.js` validates the fields, then emails them to `hello@buildnexa.io` over SMTP, with the visitor's address as Reply-To.
