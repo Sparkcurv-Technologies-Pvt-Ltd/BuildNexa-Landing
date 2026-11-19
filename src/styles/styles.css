@@ -770,3 +770,15 @@ body:not(.is-loading) .loader { clip-path: inset(0 0 100% 0); visibility: hidden
   .split-word > span { transform: none; opacity: 1; }
   .marquee__track, .cta__marquee-track { animation: none; }
 }
+
+/* ==========================================================================
+   Dedicated pages (src/pages/) — DPR, Procurement, RA Billing, Solar EPC, Tally
+   ========================================================================== */
+.breadcrumb { display: inline-block; font-family: var(--mono); font-size: .78rem; letter-spacing: .04em; color: var(--muted); margin-bottom: 18px; transition: color .25s; }
+.breadcrumb:hover { color: var(--text); }
+.page-hero { padding-top: calc(var(--header-h) + 64px); }
+
+.related-pages { padding: 48px 0; border-top: 1px solid var(--line); }
+.related-pages ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 14px; padding: 0; }
+.related-pages a { display: inline-flex; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--text); font-size: .9rem; transition: border-color .25s, color .25s; }
+.related-pages a:hover { border-color: rgba(154,1,41,.5); color: var(--blue-2); }

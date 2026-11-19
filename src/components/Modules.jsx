@@ -19,7 +19,7 @@ export default function Modules() {
                 <span className="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><rect x="5" y="10" width="4" height="11"/><rect x="10" y="6" width="4" height="15"/><rect x="15" y="3" width="4" height="18"/></svg></span>
                 <h3>Projects &amp; DPR</h3>
                 <p>WBS &amp; weightages, Engineering, Materials and Construction DPR, Plan vs Actual, Master Schedule, Project 360 and daily progress reports.</p>
-                <a className="service-card__link" href="#contact" aria-label="Ask about Projects &amp; DPR">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+                <a className="service-card__link" href="/daily-progress-reporting" aria-label="More about Projects &amp; DPR">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
               </div>
             </article>
             <article className="service-card" data-reveal style={{ "--d": "0.06s" }}>
@@ -37,7 +37,7 @@ export default function Modules() {
                 <span className="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 8H7"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></span>
                 <h3>Procurement</h3>
                 <p>Materials: Indent → Requisition → RFQ → PO → GRN → Bill → Payment. Subcontracts: Service Requisition → Work Order → JMR → Service Bill.</p>
-                <a className="service-card__link" href="#contact" aria-label="Ask about Procurement">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+                <a className="service-card__link" href="/procurement" aria-label="More about Procurement">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
               </div>
             </article>
             <article className="service-card" data-reveal style={{ "--d": "0s" }}>
@@ -46,7 +46,7 @@ export default function Modules() {
                 <span className="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span>
                 <h3>Clients &amp; Billing</h3>
                 <p>Leads, tenders, proposals and contracts through to RA bills, client advances, client payments and the client ledger.</p>
-                <a className="service-card__link" href="#contact" aria-label="Ask about Clients &amp; Billing">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+                <a className="service-card__link" href="/ra-billing" aria-label="More about Clients &amp; Billing / RA billing">Learn more <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
               </div>
             </article>
             <article className="service-card" data-reveal style={{ "--d": "0.06s" }}>

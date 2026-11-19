@@ -4,13 +4,13 @@ export default function Header() {
       {/* Header */}
       <header className="header" data-header>
       <div className="header__inner">
-        <a href="#top" className="brand" aria-label="BuildNexa — home">
+        <a href="/" className="brand" aria-label="BuildNexa — home">
           <img className="brand__logo" src="/assets/buildnexa-icon-96.png" width="36" height="36" alt=""/>
           <span className="brand__name">Build<b>Nexa</b><span className="brand__tm">™</span></span>
         </a>
         <nav className="nav" aria-label="Primary">
           <ul className="nav__list">
-            <li><a href="#top" className="nav__link">Home</a></li>
+            <li><a href="/" className="nav__link">Home</a></li>
             <li><a href="#about" className="nav__link">About</a></li>
             <li><a href="#services" className="nav__link">Services</a></li>
             <li><a href="#solutions" className="nav__link">Solutions</a></li>
@@ -35,7 +35,7 @@ export default function Header() {
       <div className="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
       <nav aria-label="Mobile">
         <ol className="mobile-menu__list">
-          <li><a href="#top">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#solutions">Solutions</a></li>

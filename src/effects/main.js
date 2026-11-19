@@ -277,29 +277,31 @@ function block1() {
       });
     });
 
-    // Hero floating cards: mouse depth
+    // Hero floating cards: mouse depth — only present on the homepage (src/pages/Home.jsx)
     const hero = $(".hero");
-    const floats = $$("[data-depth]");
-    let mx = 0, my = 0, smx = 0, smy = 0, floatRunning = false;
-    const floatLoop = () => {
-      smx = lerp(smx, mx, 0.08);
-      smy = lerp(smy, my, 0.08);
-      floats.forEach((f) => {
-        const d = parseFloat(f.dataset.depth);
-        f.style.setProperty("--fx", (smx * 40 * d).toFixed(1) + "px");
-        f.style.setProperty("--fy", (smy * 30 * d).toFixed(1) + "px");
-        f.style.setProperty("--ry", (smx * 10 * d).toFixed(2) + "deg");
-        f.style.setProperty("--rx", (-smy * 10 * d).toFixed(2) + "deg");
+    if (hero) {
+      const floats = $$("[data-depth]");
+      let mx = 0, my = 0, smx = 0, smy = 0, floatRunning = false;
+      const floatLoop = () => {
+        smx = lerp(smx, mx, 0.08);
+        smy = lerp(smy, my, 0.08);
+        floats.forEach((f) => {
+          const d = parseFloat(f.dataset.depth);
+          f.style.setProperty("--fx", (smx * 40 * d).toFixed(1) + "px");
+          f.style.setProperty("--fy", (smy * 30 * d).toFixed(1) + "px");
+          f.style.setProperty("--ry", (smx * 10 * d).toFixed(2) + "deg");
+          f.style.setProperty("--rx", (-smy * 10 * d).toFixed(2) + "deg");
+        });
+        if (Math.abs(smx - mx) > 0.001 || Math.abs(smy - my) > 0.001) requestAnimationFrame(floatLoop);
+        else floatRunning = false;
+      };
+      hero.addEventListener("pointermove", (e) => {
+        mx = e.clientX / vw - 0.5;
+        my = e.clientY / vh - 0.5;
+        heroPointer.x = mx; heroPointer.y = my;
+        if (!floatRunning) { floatRunning = true; requestAnimationFrame(floatLoop); }
       });
-      if (Math.abs(smx - mx) > 0.001 || Math.abs(smy - my) > 0.001) requestAnimationFrame(floatLoop);
-      else floatRunning = false;
-    };
-    hero.addEventListener("pointermove", (e) => {
-      mx = e.clientX / vw - 0.5;
-      my = e.clientY / vh - 0.5;
-      heroPointer.x = mx; heroPointer.y = my;
-      if (!floatRunning) { floatRunning = true; requestAnimationFrame(floatLoop); }
-    });
+    }
   }
 
   /* ----------------------------------------------------------------------
